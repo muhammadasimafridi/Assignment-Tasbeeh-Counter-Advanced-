@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasbeeh Counter (Advanced)</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        h1{
+            margin: 30px 0 10px 0;
+            font-weight: 900;
+            font-size: 35px;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+        .num{
+            font-weight: 600;
+            font-size: 30px;
+            width: fit-content;
+            height: 40px;
+        }
+        .btns{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .btns button{
+            padding: 6px 25px;
+        }
+        .img{
+            width: 400px;
+            height: 320px;
+        }
+        #myAudio{
+            width: 100px;
+            height: 30px;
+            background-color: red;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tasbeeh Counter (Advanced)</h1>
+    <div class="container">
+        <h2 class="num"></h2>
+        <div class="btns">
+            <button class="add-btn">Add</button>
+            <button class="res-btn">Reset</button>
+        </div>
+    </div>
+
+
+    <script>
+        let container = document.querySelector(".container");
+        let num = document.querySelector(".num");
+        let addBtn = document.querySelector(".add-btn");
+        let resBtn = document.querySelector(".res-btn");
+        let count = 0;
+
+        let img = document.createElement("img");
+        container.appendChild(img);
+        img.src = "Pics/alhamdullilah-img.jpg"
+
+        let beep = document.createElement("audio");
+        beep.src = "Audios/beep-sound-copy.mp3";
+        img.append(beep);
+
+        addBtn.addEventListener("click", () => {
+            count++;
+            beepAudio();
+            num.textContent = count;
+            if (count >= 0 && count <= 33){
+                img.src = "Pics/alhamdullilah-img.jpg";
+            } else if (count >= 34 && count <= 66){
+                img.src = "Pics/subhanallah-img.jpg";
+            } else if(count >= 67 && count <= 100){
+                img.src = "Pics/allahuakbar-img.png";
+            } else{
+                alert("Please, Reset it and Start again.");
+            }
+        });
+
+        function beepAudio() {
+            beep.play();
+        }
+
+        resBtn.addEventListener("click", () => {
+            count = 0;
+            num.textContent = count;
+
+            beepAudio();
+        });
+
+    </script>
+</body>
+</html>
